@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saikat Vai Fan Club</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff8a00 0%, #e52e71 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ff8a00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff8a00;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .members-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #ff8a00;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #ff8a00, #e52e71);
+            border-radius: 2px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .member-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .member-card:hover::before {
+            left: 100%;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-rank {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .member-role {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .join-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .join-btn {
+            background: linear-gradient(135deg, #ff8a00, #e52e71);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .join-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .codeforces-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .codeforces-link:hover {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .hero-section, .members-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="hero-section">
+                <img src="./saikat.png" alt="Saikat Biswas" class="hero-image">
+                <p class="subtitle">Celebrating Excellence in Competitive Programming</p>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="memberCount">6</div>
+                        <div class="stat-label">Active Members</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Inspiration Level</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2025</div>
+                        <div class="stat-label">Founded</div>
+                    </div>
+                </div>
+                
+                <a href="https://codeforces.com/ratings/organization/50889" target="_blank" class="codeforces-link">
+                    🏆 Visit our Codeforces Organization
+                </a>
+            </div>
+        </header>
+
+        <main class="members-section">
+            <h2 class="section-title">Our Amazing Members</h2>
+            
+            <div class="members-grid" id="membersGrid">
+                <!-- Members will be populated by JavaScript -->
+            </div>
+
+            <div class="join-section">
+                <h3 style="color: white; margin-bottom: 15px;">Want to Join Our Fan Club?</h3>
+                <button class="join-btn" onclick="joinClub()">Become a Member</button>
+                <p style="color: white; margin-top: 15px; opacity: 0.8;">
+                    Join us in celebrating the coding journey and learning from the best!
+                </p>
+            </div>
+        </main>
+    </div>
+    <footer style="text-align:center; margin-top:40px; padding:20px 0; color:white; opacity:0.85;">
+        <div>
+            &copy; 2025 Saikat Vai Fan Club &mdash; Made with ❤️ by the Fan Club Members
+        </div>
+        <div style="margin-top:8px; font-size:0.95em;">
+            Follow <a href="https://www.facebook.com/share/17KVB2i4f2/" target="_blank" style="color:#ffd700; text-decoration:underline;">Saikat Vai</a>
+        </div>
+    </footer>
+    <script>
+        const members = [
+            {
+                rank: "#1",
+                name: "Saikat Biswas",
+                role: "The Legend Himself",
+                avatar: "👑",
+                gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            },
+            {
+                rank: "#2",
+                name: "Rahul Kumar Ghosh",
+                role: "Elite Problem Solver",
+                avatar: "🚀",
+                gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+            },
+            {
+                rank: "#3",
+                name: "Sourav Mondal",
+                role: "Algorithm Enthusiast",
+                avatar: "💎",
+                gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+            },
+            {
+                rank: "#4",
+                name: "Shawon Mondal",
+                role: "Code Warrior",
+                avatar: "⚡",
+                gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"
+            },
+            {
+                rank: "#5",
+                name: "Devjyoti Tikader Dipto",
+                role: "Logic Master",
+                avatar: "🧠",
+                gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)"
+            },
+            {
+                rank: "#6",
+                name: "Mohammed Rifat",
+                role: "Logic Master",
+                avatar: "🧠",
+                gradient:  "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+            },
+            {
+                rank: "#7",
+                name: "Member Slot Open",
+                role: "Waiting for You!",
+                avatar: "✨",
+                gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+            }
+        ];
+
+        function renderMembers() {
+            const membersGrid = document.getElementById('membersGrid');
+            membersGrid.innerHTML = '';
+
+            members.forEach((member, index) => {
+                const memberCard = document.createElement('div');
+                memberCard.className = 'member-card';
+                memberCard.style.background = member.gradient;
+                memberCard.style.animationDelay = `${index * 0.2}s`;
+                
+                memberCard.innerHTML = `
+                    <div class="member-rank">${member.rank}</div>
+                    <div class="member-avatar">${member.avatar}</div>
+                    <div class="member-name">${member.name}</div>
+                    <div class="member-role">${member.role}</div>
+                `;
+
+                if (member.name === "Member Slot Open") {
+                    memberCard.style.cursor = 'pointer';
+                    memberCard.onclick = joinClub;
+                }
+
+                membersGrid.appendChild(memberCard);
+            });
+        }
+
+        function joinClub() {
+            const name = prompt("What's your name, future fan club member?");
+            if (name && name.trim()) {
+                // Find the open slot and replace it
+                const openSlotIndex = members.findIndex(member => member.name === "Member Slot Open");
+                if (openSlotIndex !== -1) {
+                    members[openSlotIndex] = {
+                        rank: `#${openSlotIndex + 1}`,
+                        name: name.trim(),
+                        role: "New Fan Club Member",
+                        avatar: "🌟",
+                        gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+                    };
+                    
+                    // Add a new open slot
+                    members.push({
+                        rank: `#${members.length + 1}`,
+                        name: "Member Slot Open",
+                        role: "Waiting for You!",
+                        avatar: "✨",
+                        gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+                    });
+                    
+                    document.getElementById('memberCount').textContent = members.length;
+                    renderMembers();
+                    
+                    alert(`Welcome to the Saikat Vai Fan Club, ${name}! 🎉`);
+                }
+            }
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMembers();
+            
+            // Add floating animation to the hero image
+            const heroImage = document.querySelector('.hero-image');
+            let floatDirection = 1;
+            
+            setInterval(() => {
+                const currentTransform = heroImage.style.transform || '';
+                const currentY = parseFloat(currentTransform.match(/translateY\(([-\d.]+)px\)/) || [0, 0])[1];
+                const newY = currentY + (floatDirection * 0.5);
+                
+                if (Math.abs(newY) > 10) {
+                    floatDirection *= -1;
+                }
+                
+                heroImage.style.transform = `translateY(${newY}px)`;
+            }, 50);
+
+            // Add click animation to stat cards
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-5px)';
+                    }, 150);
+                });
+            });
+        });
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const correctCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > correctCode.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.toString() === correctCode.toString()) {
+                document.body.style.animation = 'rainbow 2s infinite';
+                alert("🎊 Secret Fan Club Mode Activated! 🎊");
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+    </style>
+</body>
+</html>
